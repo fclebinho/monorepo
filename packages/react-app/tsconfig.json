@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "../common/src/Components/NavHeader.tsx"]
+  "include": ["src", "../common/src/Components/NavHeader.tsx", "../common/src/Components/Sibebar.tsx"]
 }

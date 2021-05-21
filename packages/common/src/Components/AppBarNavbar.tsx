@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Text, Flex, Box, Avatar, Icon, Stack } from '@chakra-ui/react';
 import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri';
 
-export const Navbar: React.FC = (props): ReactElement => {
+export const AppBarNavbar: React.FC = (props): ReactElement => {
   return (
     <Flex align="center" ml="auto">
       <Stack spacing="8" direction="row" mx="8" pr="8" py="8" borderRightWidth={1}>
@@ -22,4 +22,4 @@ export const Navbar: React.FC = (props): ReactElement => {
   );
 };
 
-export default Navbar;
+export default AppBarNavbar;

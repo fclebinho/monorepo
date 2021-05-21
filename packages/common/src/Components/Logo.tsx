@@ -4,7 +4,7 @@ import { Text } from '@chakra-ui/react';
 export const Logo: React.FC = (props): ReactElement => {
   return (
     <Text fontSize="3xl" fontWeight="bold" letterSpacing="tight" w="64">
-      dashgo
+      project
       <Text as="span" color="pink.500">
         .
       </Text>

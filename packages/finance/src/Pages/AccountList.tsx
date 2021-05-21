@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Box, Flex, NavHeader } from '@namespace/common';
-import { Sidebar } from './Components';
+import { Box, AppBar, Sidebar, Flex } from '@namespace/common';
 
 export const AccountList: React.FC = (): ReactElement => {
   return (
     <Box>
-      <NavHeader />
+      <AppBar />
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
       </Flex>

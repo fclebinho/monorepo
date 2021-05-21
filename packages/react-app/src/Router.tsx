@@ -1,20 +1,20 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Login, Dashboard, EntryList, AccountList, NotFound } from './Pages';
+import { PrivateRoute } from '@namespace/common';
+import { EntryList, AccountList } from '@namespace/finance';
+import { Login, Dashboard, NotFound } from './Pages';
 
 export const Routes: React.FC = () => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/sign-in" />
-      <Route path="/sign-in">
+      <Redirect exact from="/" to="/signin" />
+      <Route path="/signin">
         <Login />
       </Route>
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      <Route path="/entries">
-        <EntryList />
-      </Route>
+      <PrivateRoute path="/entries" component={EntryList} />
       <Route path="/accounts">
         <AccountList />
       </Route>

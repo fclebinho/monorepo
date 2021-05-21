@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Input, Flex, Heading, useColorMode, useColorModeValue } from '@namespace/common';
+import { Button, Input, Flex, Heading, Logo, useColorMode, useColorModeValue } from '@namespace/common';
 
 export const Login: React.FC = (): ReactElement => {
   const { push } = useHistory();
@@ -11,7 +11,7 @@ export const Login: React.FC = (): ReactElement => {
     <Flex height="100vh" align="center" justify="center">
       <Flex direction="column" background={formBackground} p={12} rounded={6}>
         <Heading mb={6} pt={8} pb={6} textAlign="center">
-          Sign In
+          <Logo />
         </Heading>
         <Input placeholder="dear.john@mail.com" variant="filled" mb={3} type="email" />
         <Input placeholder="********" variant="filled" mb={6} type="password" />

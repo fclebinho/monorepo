@@ -11,7 +11,6 @@ module.exports = (config, env) => {
       babelInclude([
         path.resolve('src'),
         fs.realpathSync('../common/src'), // THIS
-        fs.realpathSync('../finance/src'),
       ]),
     )(config, env),
   );

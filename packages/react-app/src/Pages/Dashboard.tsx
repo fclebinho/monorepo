@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Flex, SimpleGrid, Box, Text, NavHeader } from '@namespace/common';
-import { Sidebar } from './Components';
+import { Flex, SimpleGrid, Box, Text, AppBar, Sidebar } from '@namespace/common';
 
 export const Dashboard: React.FC = (): ReactElement => {
   return (
     <Flex direction="column" h="100vh">
-      <NavHeader />
+      <AppBar />
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
