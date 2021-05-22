@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { PrivateRoute } from '@namespace/common';
 import { EntryList, AccountList } from '@namespace/finance';
-import { Login, Dashboard, NotFound } from './Pages';
+import { Login, Dashboard, Template, NotFound } from './Pages';
 
 export const Routes: React.FC = () => {
   return (
@@ -12,11 +12,19 @@ export const Routes: React.FC = () => {
         <Login />
       </Route>
       <Route path="/dashboard">
-        <Dashboard />
+        <Template>
+          <Dashboard />
+        </Template>
       </Route>
-      <PrivateRoute path="/entries" component={EntryList} />
-      <Route path="/accounts">
-        <AccountList />
+      <PrivateRoute path="/entries">
+        <Template>
+          <EntryList />
+        </Template>
+      </PrivateRoute>
+      <Route path="/accounts/:id">
+        <Template>
+          <AccountList />
+        </Template>
       </Route>
       <Route>
         <NotFound />

@@ -8,6 +8,9 @@ export { Sidebar } from './Components/Sidebar';
 export { PrivateRoute } from './Components/PrivateRoute';
 export { PublicRoute } from './Components/PublicRoute';
 export { SearchProvider, useSearch } from './Context/Search';
+export { SidebarGroup } from './Components/SidebarGroup';
+export { SidebarItem } from './Components/SidebarItem';
+export { DataEmpty } from './Components/DataEmpty';
 
 export {
   Button,

@@ -11,7 +11,7 @@ export type EntryProps = {
   createdAt?: string;
 };
 
-interface FinanceContextProps {
+interface EntryContextProps {
   items: EntryProps[];
   setItems: React.Dispatch<React.SetStateAction<EntryProps[]>>;
   selectedItems: EntryProps[];
@@ -19,9 +19,9 @@ interface FinanceContextProps {
   clearSelected(): void;
 }
 
-const context = createContext<FinanceContextProps>({} as FinanceContextProps);
+const context = createContext<EntryContextProps>({} as EntryContextProps);
 
-export const FinanceProvider: React.FC = ({ children }) => {
+export const EntryProvider: React.FC = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState<EntryProps[]>([]);
   const [items, setItems] = useState<EntryProps[]>([
     {
@@ -75,4 +75,4 @@ export const FinanceProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useFinance = () => useContext(context);
+export const useEntry = () => useContext(context);
