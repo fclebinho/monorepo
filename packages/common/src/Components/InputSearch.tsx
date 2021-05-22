@@ -46,7 +46,7 @@ export const InputSearch: React.FC<InputProps> = (props): ReactElement => {
       onChange={handleChange}
       onKeyDown={handleKeyDown}
     >
-      <Input variant="unstyled" placeholder="Search here..." px="2" mr="2" {...props} />
+      <Input variant="unstyled" placeholder="Pesquise aqui..." px="2" mr="2" {...props} />
       <Icon as={RiSearchLine} fontSize={24} />
     </Flex>
   );

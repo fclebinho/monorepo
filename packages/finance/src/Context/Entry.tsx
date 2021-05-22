@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type EntryProps = {
   expectedValue: number;
@@ -17,62 +17,64 @@ interface EntryContextProps {
   selectedItems: EntryProps[];
   setSelectedItems: React.Dispatch<React.SetStateAction<EntryProps[]>>;
   clearSelected(): void;
+  create(entry: EntryProps): Promise<EntryProps>;
+  isCreating: boolean;
+  remove(selecteds: EntryProps[]): Promise<void>;
+  isRemoving: boolean;
 }
 
 const context = createContext<EntryContextProps>({} as EntryContextProps);
 
 export const EntryProvider: React.FC = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState<EntryProps[]>([]);
-  const [items, setItems] = useState<EntryProps[]>([
-    {
-      expectedValue: -64.89,
-      value: -64.89,
-      dueDate: '2021-05-21',
-      date: '2021-05-21',
-      financialType: 0,
-      description: 'Farmácia São Fidelis',
-      id: 'eccbc87e4b5ce2fe28308fd9f2a7baf3',
-      createdAt: '2021-05-21',
-    },
-    {
-      expectedValue: -64.89,
-      value: -64.89,
-      dueDate: '2021-05-21',
-      date: '2021-05-21',
-      financialType: 0,
-      description: 'Cassol Center Lar',
-      id: 'a87ff679a2f3e71d9181a67b7542122c',
-      createdAt: '2021-05-21',
-    },
-    {
-      expectedValue: -64.89,
-      value: -64.89,
-      dueDate: '2021-05-21',
-      date: '2021-05-21',
-      financialType: 0,
-      description: 'Fort Atacadista',
-      id: 'c81e728d9d4c2f636f067f89cc14862c',
-      createdAt: '2021-05-21',
-    },
-    {
-      expectedValue: -64.89,
-      value: 698.36,
-      dueDate: '2021-05-21',
-      date: '2021-05-21',
-      financialType: 0,
-      description: 'Pagamento de fatura',
-      id: 'c4ca4238a0b923820dcc509a6f75849b',
-      createdAt: '2021-05-21',
-    },
-  ]);
+  const [items, setItems] = useState<EntryProps[]>([]);
+  const [isCreating, setIsCreating] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
 
   const clearSelected = (): void => setSelectedItems([]);
 
+  const create = async (entry: EntryProps): Promise<EntryProps> =>
+    new Promise(resolve => {
+      setIsCreating(true);
+      setTimeout(() => {
+        setItems(values => [...values, entry]);
+        resolve(entry);
+        setIsCreating(false);
+      }, 2000);
+    });
+
+  const remove = async (selecteds: EntryProps[]): Promise<void> =>
+    new Promise(resolve => {
+      setIsRemoving(true);
+      setTimeout(() => {
+        setItems(values => values.filter(item => !selecteds.filter(selected => selected.id === item.id).length > 0));
+        clearSelected();
+        resolve();
+        setIsRemoving(false);
+      }, 2000);
+    });
+
+  useEffect(() => {
+    items.length <= 0 && setSelectedItems([]);
+  }, [items]);
+
   return (
-    <context.Provider value={{ items, setItems, selectedItems, setSelectedItems, clearSelected }}>
+    <context.Provider
+      value={{
+        items,
+        setItems,
+        selectedItems,
+        setSelectedItems,
+        clearSelected,
+        create,
+        isCreating,
+        remove,
+        isRemoving,
+      }}
+    >
       {children}
     </context.Provider>
   );
 };
 
-export const useEntry = () => useContext(context);
+export const useEntry = (): EntryContextProps => useContext(context);

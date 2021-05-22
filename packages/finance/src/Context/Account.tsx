@@ -27,19 +27,19 @@ export const AccountProvider: React.FC = ({ children }) => {
       createdAt: '2021-05-21',
     },
     {
-      description: 'Conta Santander',
+      description: 'Santander',
       accountType: 1,
       id: 'a87ff679a2f3e71d9181a67b7542122c',
       createdAt: '2021-05-21',
     },
     {
-      description: 'Conta Caixa',
+      description: 'CEF',
       accountType: 1,
       id: 'c81e728d9d4c2f636f067f89cc14862c',
       createdAt: '2021-05-21',
     },
     {
-      description: 'Conta Nubank',
+      description: 'Nubank',
       accountType: 1,
       id: 'c4ca4238a0b923820dcc509a6f75849b',
       createdAt: '2021-05-21',

@@ -19,7 +19,8 @@ import {
   useSearch,
 } from '@namespace/common';
 import { useEntry } from '../Context/Entry';
-import { FinanceSidebarGroup } from './FinanceSidebarGroup';
+import { ButtonDeleteEntry } from './ButtonDeleteEntry';
+import { ButtonCreateEntry } from './ButtonCreateEntry';
 
 interface EntriesTableProps {
   title: string;
@@ -28,46 +29,26 @@ interface EntriesTableProps {
 
 export const EntriesTable: React.FC<EntriesTableProps> = ({ title, subtitle }): React.ReactElement => {
   const { text } = useSearch();
-  const { items, setItems, selectedItems, setSelectedItems, clearSelected } = useEntry();
+  const { items, selectedItems, setSelectedItems, create, remove, isRemoving, isCreating } = useEntry();
   const [entries, setEntries] = useState([]);
-  const [creating, setCreating] = useState(false);
-  const [deleting, setDeleting] = useState(false);
 
   const handAddEntry = (): void => {
-    setCreating(true);
-    setTimeout(() => {
-      setItems(items => [
-        ...items,
-        {
-          expectedValue: 10.0,
-          value: 698.36,
-          dueDate: '2021-05-21',
-          date: '2021-05-21',
-          financialType: 0,
-          description: 'Novo lançamento',
-          id: 'e4da3b7fbbce2345d7772b0674a318d5',
-          createdAt: '2021-05-21',
-        },
-      ]);
-      setCreating(false);
-    }, 2000);
+    create({
+      expectedValue: 10.0,
+      value: 698.36,
+      dueDate: '2021-05-21',
+      date: '2021-05-21',
+      financialType: 0,
+      description: 'Novo lançamento',
+      id: 'e4da3b7fbbce2345d7772b0674a318d5',
+      createdAt: '2021-05-21',
+    });
   };
 
   const handleCheckedEntry = ({ checked, entry }): void => {
     checked
       ? setSelectedItems(entries => [...entries, entry])
       : setSelectedItems(entries => entries.filter(item => item.id !== entry.id));
-  };
-
-  const handleRemoveItems = () => {
-    setDeleting(true);
-    setTimeout(() => {
-      setItems(entries =>
-        entries.filter(item => !selectedItems.filter(selected => selected.id === item.id).length > 0),
-      );
-      clearSelected();
-      setDeleting(false);
-    }, 2000);
   };
 
   useEffect(() => setEntries(items), [items]);
@@ -89,25 +70,10 @@ export const EntriesTable: React.FC<EntriesTableProps> = ({ title, subtitle }): 
           )}
         </Heading>
         <Stack direction="row">
-          <Button
-            isLoading={deleting}
-            disabled={selectedItems.length <= 0}
-            onClick={handleRemoveItems}
-            size="sm"
-            fontSize="sm"
-          >
-            Remover
-          </Button>
-          <Button
-            disabled={deleting}
-            isLoading={creating}
-            onClick={handAddEntry}
-            size="sm"
-            fontSize="sm"
-            colorScheme="pink"
-          >
+          <ButtonDeleteEntry size="sm">Remover</ButtonDeleteEntry>
+          <ButtonCreateEntry title="Criar lançamento" size="sm" colorScheme="pink">
             Criar novo
-          </Button>
+          </ButtonCreateEntry>
         </Stack>
       </Flex>
       {entries.length <= 0 ? (

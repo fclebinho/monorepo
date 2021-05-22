@@ -9,7 +9,7 @@ interface SidebarGroupProps {
 export const SidebarGroup: React.FC<SidebarGroupProps> = ({ children, title }): ReactElement => {
   return (
     <Box>
-      <Text color="pink.400" fontSize="small" fontWeight="medium">
+      <Text color="pink.400" fontSize="small" fontWeight="medium" mt={6}>
         {title}
       </Text>
       <Stack spacing="4" mt="3" align="stretch">

@@ -10,11 +10,9 @@ export const FinanceSidebarGroup: React.FC = (): ReactElement => {
 
   return (
     <>
-      <SidebarGroup title="Transações">
-        <SidebarItem to="/entries" icon={FiClipboard}>
-          Lançamentos
-        </SidebarItem>
-      </SidebarGroup>
+      <SidebarItem to="/entries" icon={FiClipboard}>
+        Lançamentos
+      </SidebarItem>
       <SidebarGroup title="Contas">
         {items.map(item => (
           <SidebarItem
@@ -24,7 +22,7 @@ export const FinanceSidebarGroup: React.FC = (): ReactElement => {
           >
             <Text>{item.description}</Text>
             <Text fontSize="small" fontWeight="light">
-              {item.description}
+              {item.accountType === 0 ? 'Carteira' : 'Bancária'}
             </Text>
           </SidebarItem>
         ))}
