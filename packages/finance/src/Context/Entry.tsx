@@ -19,8 +19,13 @@ interface EntryContextProps {
   clearSelected(): void;
   create(entry: EntryProps): Promise<EntryProps>;
   isCreating: boolean;
+  update(entry: EntryProps): Promise<EntryProps>;
+  isUpdating: boolean;
   remove(selecteds: EntryProps[]): Promise<void>;
   isRemoving: boolean;
+
+  enabledLoadMonitoring: boolean;
+  setEnabledLoadMonitoring: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const context = createContext<EntryContextProps>({} as EntryContextProps);
@@ -29,28 +34,40 @@ export const EntryProvider: React.FC = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState<EntryProps[]>([]);
   const [items, setItems] = useState<EntryProps[]>([]);
   const [isCreating, setIsCreating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
+  const [enabledLoadMonitoring, setEnabledLoadMonitoring] = useState(true);
 
   const clearSelected = (): void => setSelectedItems([]);
 
   const create = async (entry: EntryProps): Promise<EntryProps> =>
     new Promise(resolve => {
-      setIsCreating(true);
+      enabledLoadMonitoring && setIsCreating(true);
       setTimeout(() => {
         setItems(values => [...values, entry]);
         resolve(entry);
-        setIsCreating(false);
+        enabledLoadMonitoring && setIsCreating(false);
+      }, 2000);
+    });
+
+  const update = async (entry: EntryProps): Promise<EntryProps> =>
+    new Promise(resolve => {
+      enabledLoadMonitoring && setIsUpdating(true);
+      setTimeout(() => {
+        setItems(values => values.map(item => (item.id === entry.id ? entry : item)));
+        resolve(entry);
+        enabledLoadMonitoring && setIsUpdating(false);
       }, 2000);
     });
 
   const remove = async (selecteds: EntryProps[]): Promise<void> =>
     new Promise(resolve => {
-      setIsRemoving(true);
+      enabledLoadMonitoring && setIsRemoving(true);
       setTimeout(() => {
         setItems(values => values.filter(item => !selecteds.filter(selected => selected.id === item.id).length > 0));
         clearSelected();
         resolve();
-        setIsRemoving(false);
+        enabledLoadMonitoring && setIsRemoving(false);
       }, 2000);
     });
 
@@ -68,8 +85,11 @@ export const EntryProvider: React.FC = ({ children }) => {
         clearSelected,
         create,
         isCreating,
+        update,
+        isUpdating,
         remove,
         isRemoving,
+        setEnabledLoadMonitoring,
       }}
     >
       {children}

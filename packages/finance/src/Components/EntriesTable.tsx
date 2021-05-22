@@ -1,4 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
+import { FiTrash2 } from 'react-icons/fi';
+import { RiFileEditLine } from 'react-icons/ri';
 import {
   Box,
   AppBar,
@@ -21,6 +23,8 @@ import {
 import { useEntry } from '../Context/Entry';
 import { ButtonDeleteEntry } from './ButtonDeleteEntry';
 import { ButtonCreateEntry } from './ButtonCreateEntry';
+import { ButtonEditEntry } from './ButtonEditEntry';
+import { IconButtonDeleteEntry } from './IconButtonDeleteEntry';
 
 interface EntriesTableProps {
   title: string;
@@ -122,9 +126,12 @@ export const EntriesTable: React.FC<EntriesTableProps> = ({ title, subtitle }): 
                   </Box>
                 </Td>
                 <Td width={12}>
-                  <Button variant="outline" size="sm">
-                    Edit
-                  </Button>
+                  <Stack direction="row">
+                    <ButtonEditEntry size="sm" title="Editar lançamento" entry={entry} icon={<RiFileEditLine />}>
+                      Editar
+                    </ButtonEditEntry>
+                    <IconButtonDeleteEntry entry={entry} size="sm" aria-label="Search database" icon={<FiTrash2 />} />
+                  </Stack>
                 </Td>
               </Tr>
             ))}

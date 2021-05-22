@@ -1,4 +1,4 @@
-import { ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+import { ButtonProps as ChakraButtonProps, IconButtonProps as ChakraIconButtonProps } from '@chakra-ui/react';
 
 export { CommonProvider } from './Context/CommonProvider';
 export { Input } from './Components/Input';
@@ -15,9 +15,11 @@ export { SidebarItem } from './Components/SidebarItem';
 export { DataEmpty } from './Components/DataEmpty';
 
 export type ButtonProps = ChakraButtonProps;
+export type IconButtonProps = ChakraIconButtonProps;
 
 export {
   Button,
+  IconButton,
   Text,
   extendTheme,
   Stack,
