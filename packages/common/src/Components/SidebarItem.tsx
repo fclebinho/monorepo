@@ -1,24 +1,32 @@
 import React, { ReactElement } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { IconType } from 'react-icons';
-import { Text, Link, Icon } from '@chakra-ui/react';
+import { Text, Button, Box, Stack, LinkProps, Icon } from '@chakra-ui/react';
 
-interface SidebarItemProps {
+export interface SidebarItemProps extends LinkProps {
   icon?: IconType;
   to: string;
 }
 
-export const SidebarItem: React.FC<SidebarItemProps> = ({ children, icon, to }): ReactElement => {
+export const SidebarItem: React.FC<SidebarItemProps> = ({ children, icon, to, ...rest }): ReactElement => {
   const { push } = useHistory();
   const { pathname } = useLocation();
 
   return (
-    <Link color={to === pathname ? 'gray.800' : 'gray.400'} onClick={() => push(to)} display="flex" alignItems="center">
-      {icon && <Icon as={icon} fontSize="20" />}
-      <Text ml="4" fontWeight="medium">
+    <Box
+      cursor="pointer"
+      onClick={(): void => push(to)}
+      borderLeftWidth={3}
+      borderLeftColor={to === pathname ? 'pink.500' : 'none'}
+      _hover={{
+        background: 'gray.50',
+      }}
+    >
+      <Stack direction="row" mx={3}>
+        {icon && <Icon as={icon} fontSize="20" />}
         {children}
-      </Text>
-    </Link>
+      </Stack>
+    </Box>
   );
 };
 

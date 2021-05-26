@@ -1,4 +1,5 @@
 import { ButtonProps as ChakraButtonProps, IconButtonProps as ChakraIconButtonProps } from '@chakra-ui/react';
+import { SidebarItemProps as InternalSidebarItemProps } from './Components/SidebarItem';
 
 export { CommonProvider } from './Context/CommonProvider';
 export { Input } from './Components/Input';
@@ -13,9 +14,12 @@ export { SearchProvider, useSearch } from './Context/Search';
 export { SidebarGroup } from './Components/SidebarGroup';
 export { SidebarItem } from './Components/SidebarItem';
 export { DataEmpty } from './Components/DataEmpty';
+export { useMousePosition } from './Context/MousePosition';
+export { Droppable } from './Components/Droppable';
 
 export type ButtonProps = ChakraButtonProps;
 export type IconButtonProps = ChakraIconButtonProps;
+export type SidebarItemProps = InternalSidebarItemProps;
 
 export {
   Button,

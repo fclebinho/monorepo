@@ -50,7 +50,7 @@ export const EntryList: React.FC = (): ReactElement => {
     ]);
   }, [setItems]);
 
-  return <EntriesTable title="Lançamentos" subtitle="Receitas e despesas" />;
+  return <EntriesTable title="Lançamentos" subtitle="Receitas e Despesas" />;
 };
 
 export default EntryList;

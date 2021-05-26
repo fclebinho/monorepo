@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 
 export type AccountProps = {
   description: string;
@@ -12,12 +13,14 @@ interface AccountContextProps {
   setItems: React.Dispatch<React.SetStateAction<AccountProps[]>>;
   selectedItems: AccountProps[];
   setSelectedItems: React.Dispatch<React.SetStateAction<AccountProps[]>>;
+  dragEnd: DragEndEvent | null;
   clearSelected(): void;
 }
 
 const context = createContext<AccountContextProps>({} as AccountContextProps);
 
 export const AccountProvider: React.FC = ({ children }) => {
+  const [dragEnd, setDragEnd] = useState<DragEndEvent | null>(null);
   const [selectedItems, setSelectedItems] = useState<AccountProps[]>([]);
   const [items, setItems] = useState<AccountProps[]>([
     {
@@ -48,9 +51,26 @@ export const AccountProvider: React.FC = ({ children }) => {
 
   const clearSelected = (): void => setSelectedItems([]);
 
+  const onDragEnd = (event: DragEndEvent): void => {
+    const { active, over } = event;
+
+    if (
+      over &&
+      over.data &&
+      over.data.current &&
+      active &&
+      active.data &&
+      active.data.current &&
+      active.data.current.supports.includes(over.data.current.type)
+    ) {
+      setDragEnd(event);
+      console.log(event);
+    }
+  };
+
   return (
-    <context.Provider value={{ items, setItems, selectedItems, setSelectedItems, clearSelected }}>
-      {children}
+    <context.Provider value={{ items, setItems, selectedItems, setSelectedItems, dragEnd, clearSelected }}>
+      <DndContext onDragEnd={onDragEnd}>{children}</DndContext>
     </context.Provider>
   );
 };

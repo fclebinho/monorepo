@@ -11,6 +11,7 @@ import {
   IconButton,
   Input,
   useDisclosure,
+  IconButtonProps,
 } from '@namespace/common';
 import { useEntry, EntryProps } from '../Context/Entry';
 
@@ -41,7 +42,7 @@ export const ButtonEditEntry: React.FC<ButtonEditEntryProps> = ({ children, entr
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerHeader>Editar lançamento</DrawerHeader>
 
           <DrawerBody>
             <Input placeholder="Type here..." />
