@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 import { RiFileEditLine } from 'react-icons/ri';
-import { Box, Flex, Text, Heading, Checkbox, Stack, useSearch } from '@namespace/common';
+import { Box, Flex, Text, Heading, Checkbox, PeriodDate, Stack, useSearch } from '@namespace/common';
 import { useEntry } from '../Context/Entry';
 import { ButtonDeleteEntry } from './ButtonDeleteEntry';
 import { ButtonCreateEntry } from './ButtonCreateEntry';
@@ -28,13 +28,16 @@ export const EntriesTable: React.FC<EntriesTableProps> = ({ title, subtitle }): 
     <Box flex="1">
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="md" fontWeight="normal">
-          <Text>{title}</Text>
+          <Text color="pink.500" fontWeight="bold">
+            {title}
+          </Text>
           {subtitle && (
-            <Text fontSize="small" fontWeight="light">
+            <Text fontSize="small" fontWeight="light" color="gray.400">
               {subtitle}
             </Text>
           )}
         </Heading>
+        <PeriodDate onSelected={(): void => {}} />
         <Stack direction="row">
           <ButtonDeleteEntry size="sm">Remover</ButtonDeleteEntry>
           <ButtonCreateEntry title="Criar lançamento" size="sm" colorScheme="pink">

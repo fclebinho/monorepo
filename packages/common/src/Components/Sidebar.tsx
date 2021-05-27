@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { RiDashboardLine, RiContactsLine, RiInputMethodLine, RiGitMergeLine } from 'react-icons/ri';
-import { Box, Stack, Text, Link, Icon } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 
 export const Sidebar: React.FC = ({ children }): ReactElement => {
   return (

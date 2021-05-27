@@ -45,7 +45,7 @@ export const AccountList: React.FC = (): ReactElement => {
     ]);
   }, [setItems]);
 
-  return <EntriesTable title={account?.description} subtitle="Créditos e Débitos" />;
+  return <EntriesTable title={`${account?.description}`} subtitle="Créditos e Débitos" />;
 };
 
 export default AccountList;

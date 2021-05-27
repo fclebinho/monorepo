@@ -40,7 +40,7 @@ export const ButtonDeleteEntry: React.FC<ButtonProps> = ({ children, ...rest }):
               Remover lançamento
             </AlertDialogHeader>
 
-            <AlertDialogBody>Tem certeza? Você não pode desfazer esta ação depois.</AlertDialogBody>
+            <AlertDialogBody>Tem certeza? Esta ação não poderá ser desfeita.</AlertDialogBody>
 
             <AlertDialogFooter>
               <Button size="sm" ref={cancelRef} onClick={onClose}>

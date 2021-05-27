@@ -1,6 +1,5 @@
 import React from 'react';
-import { FiTrash2 } from 'react-icons/fi';
-import { RiFileEditLine } from 'react-icons/ri';
+import { FiTrash2, FiEdit } from 'react-icons/fi';
 import { GrDocumentVerified } from 'react-icons/gr';
 import { useDraggable } from '@dnd-kit/core';
 import { Box, Flex, Checkbox, Text, Stack, Icon, useMousePosition } from '@namespace/common';
@@ -76,7 +75,7 @@ export const EntryCard: React.FC<EntryCardProps> = ({ entry }): React.ReactEleme
           </Flex>
           <Box ml="8">
             <Stack direction="row">
-              <ButtonEditEntry size="sm" title="Editar lançamento" entry={entry} icon={<RiFileEditLine />} aria-label="Teste">
+              <ButtonEditEntry size="sm" title="Editar lançamento" entry={entry} icon={<FiEdit />} aria-label="Teste">
                 Editar
               </ButtonEditEntry>
               <IconButtonDeleteEntry entry={entry} size="sm" aria-label="Search database" icon={<FiTrash2 />} />

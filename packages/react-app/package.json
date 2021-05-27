@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@namespace/common": "^0.1.0",
-    "@namespace/finance": "^0.1.0",    
+    "@namespace/finance": "^0.1.0",  
+    "@hookform/resolvers": "^2.4.0",
+    "react-hook-form": "^7.4.1",  
     "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-app-rewired start",

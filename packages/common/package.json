@@ -20,6 +20,7 @@
     "@dnd-kit/core": "^3.0.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "date-fns": "^2.21.2",
     "framer-motion": "^4",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0"

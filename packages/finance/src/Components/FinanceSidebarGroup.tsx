@@ -4,7 +4,7 @@ import { BiWalletAlt } from 'react-icons/bi';
 import { BsCreditCard } from 'react-icons/bs';
 import { Droppable, SidebarGroup, SidebarItem, Stack, Text } from '@namespace/common';
 import { useAccount } from '../Context/Account';
-import { DroppableEntry } from './DroppableEntry';
+import { accountTypeToString } from '../Utils/Geral';
 
 export const FinanceSidebarGroup: React.FC = (): ReactElement => {
   const { items } = useAccount();
@@ -14,14 +14,14 @@ export const FinanceSidebarGroup: React.FC = (): ReactElement => {
       <SidebarItem to="/entries">
         <Text>Lançamentos</Text>
       </SidebarItem>
-      <SidebarGroup title="Contas">
+      <SidebarGroup title="MINHAS CONTAS">
         {items.map(item => (
           <Droppable key={item.id} id={item.id} description={item.description}>
-            <SidebarItem to={`/accounts/${item.id}`}>
+            <SidebarItem to={`/accounts/${item.id}`} onDeleteClick={(): void => {}}>
               <Stack spacing={0}>
                 <Text>{item.description}</Text>
                 <Text fontSize="small" fontWeight="light">
-                  {item.accountType === 0 ? 'Carteira' : 'Bancária'}
+                  {accountTypeToString(item.accountType)}
                 </Text>
               </Stack>
             </SidebarItem>
