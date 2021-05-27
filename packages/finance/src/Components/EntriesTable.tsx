@@ -4,7 +4,7 @@ import { RiFileEditLine } from 'react-icons/ri';
 import { Box, Flex, Text, Heading, Checkbox, PeriodDate, Stack, useSearch } from '@namespace/common';
 import { useEntry } from '../Context/Entry';
 import { ButtonDeleteEntry } from './ButtonDeleteEntry';
-import { ButtonCreateEntry } from './ButtonCreateEntry';
+import { ButtonEditOrCreateEntry } from './ButtonEditOrCreateEntry';
 import { EntryCard } from './EntryCard';
 
 interface EntriesTableProps {
@@ -40,9 +40,9 @@ export const EntriesTable: React.FC<EntriesTableProps> = ({ title, subtitle }): 
         <PeriodDate onSelected={(): void => {}} />
         <Stack direction="row">
           <ButtonDeleteEntry size="sm">Remover</ButtonDeleteEntry>
-          <ButtonCreateEntry title="Criar lançamento" size="sm" colorScheme="pink">
+          <ButtonEditOrCreateEntry title="Criar lançamento" size="sm" colorScheme="pink">
             Criar novo
-          </ButtonCreateEntry>
+          </ButtonEditOrCreateEntry>
         </Stack>
       </Flex>
       {entries.map(entry => (

@@ -60,7 +60,7 @@ export const Login: React.FC = (): ReactElement => {
         <Heading mb={6} pt={8} pb={6} textAlign="center">
           <Logo />
         </Heading>
-        <Stack spacing={3}>
+        <Stack spacing={3} my={6}>
           <FormControl isInvalid={!!errors.email}>
             <Input
               isDisabled={isSubmitting}
@@ -84,7 +84,7 @@ export const Login: React.FC = (): ReactElement => {
           <Button type="submit" isLoading={isSubmitting} colorScheme="pink" fontWeight="normal">
             Log in
           </Button>
-          <Button onClick={toggleColorMode} fontWeight="normal">
+          <Button display="none" onClick={toggleColorMode} fontWeight="normal">
             Toggle Color Mode
           </Button>
         </Stack>

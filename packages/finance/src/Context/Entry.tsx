@@ -44,7 +44,7 @@ export const EntryProvider: React.FC = ({ children }) => {
     new Promise(resolve => {
       enabledLoadMonitoring && setIsCreating(true);
       setTimeout(() => {
-        setItems(values => [...values, entry]);
+        setItems(values => [...values, { ...entry, id: 'hello', financialType: 0 }]);
         resolve(entry);
         enabledLoadMonitoring && setIsCreating(false);
       }, 2000);

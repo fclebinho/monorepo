@@ -1,4 +1,8 @@
-import { ButtonProps as ChakraButtonProps, IconButtonProps as ChakraIconButtonProps } from '@chakra-ui/react';
+import {
+  ButtonProps as ChakraButtonProps,
+  IconButtonProps as ChakraIconButtonProps,
+  DrawerProps as ChakraDrawerProps,
+} from '@chakra-ui/react';
 import { SidebarItemProps as InternalSidebarItemProps } from './Components/SidebarItem';
 
 export { CommonProvider } from './Context/CommonProvider';
@@ -21,12 +25,14 @@ export { PeriodDate } from './Components/PeriodDate';
 export type ButtonProps = ChakraButtonProps;
 export type IconButtonProps = ChakraIconButtonProps;
 export type SidebarItemProps = InternalSidebarItemProps;
+export type DrawerProps = ChakraDrawerProps;
 
 export {
   Button,
   IconButton,
   Text,
   extendTheme,
+  HStack,
   Stack,
   Flex,
   Heading,
@@ -44,6 +50,8 @@ export {
   Td,
   FormControl,
   FormErrorMessage,
+  FormLabel,
+  FormHelperText,
   useColorMode,
   useColorModeValue,
   useDisclosure,

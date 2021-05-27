@@ -3,10 +3,9 @@ import { FiTrash2, FiEdit } from 'react-icons/fi';
 import { GrDocumentVerified } from 'react-icons/gr';
 import { useDraggable } from '@dnd-kit/core';
 import { Box, Flex, Checkbox, Text, Stack, Icon, useMousePosition } from '@namespace/common';
-import { ButtonEditEntry } from './ButtonEditEntry';
 import { IconButtonDeleteEntry } from './IconButtonDeleteEntry';
 import { EntryProps, useEntry } from '../Context/Entry';
-import { useEffect } from 'react';
+import { ButtonEditOrCreateEntry } from './ButtonEditOrCreateEntry';
 
 interface EntryCardProps {
   entry: EntryProps;
@@ -75,9 +74,9 @@ export const EntryCard: React.FC<EntryCardProps> = ({ entry }): React.ReactEleme
           </Flex>
           <Box ml="8">
             <Stack direction="row">
-              <ButtonEditEntry size="sm" title="Editar lançamento" entry={entry} icon={<FiEdit />} aria-label="Teste">
-                Editar
-              </ButtonEditEntry>
+              <ButtonEditOrCreateEntry size="sm" title="Editar lançamento" item={entry}>
+                <Icon as={FiEdit} />
+              </ButtonEditOrCreateEntry>
               <IconButtonDeleteEntry entry={entry} size="sm" aria-label="Search database" icon={<FiTrash2 />} />
             </Stack>
           </Box>
